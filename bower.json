@@ -1,0 +1,21 @@
+{
+  "name": "xirsys-simple-webrtc",
+  "version": "0.1.0",
+  "homepage": "https://github.com/gbahamondez/xirsys-simple-webrtc",
+  "authors": [
+    "gbahamondez <gonzalo.bahamondez.c@gmail.com>"
+  ],
+  "description": "Sample xirsys simplewebrtc",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

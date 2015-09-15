@@ -5,9 +5,9 @@ var webrtc =  new $xirsys.simplewebrtc(
   xirsysConnect.room_url
 );
 
-var connectionProperties = xirsysConnect.data;
 
-webrtc.connect(connectionProperties, {
+// Make webrtc connection
+webrtc.connect(xirsysConnect.data, {
   localVideoEl: 'localVideo',
   remoteVideosEl: 'remotesVideos',
   autoRequestMedia: true,
@@ -17,9 +17,9 @@ webrtc.connect(connectionProperties, {
 });
 
 
-
 // grab the room from the URL
 var room = location.search && location.search.split('?')[1];
+
 console.log('room --> ', room);
 
 
@@ -49,57 +49,17 @@ webrtc.on('videoAdded', function(video, peer) {
 
 
 webrtc.on('videoRemoved', function(video, peer) {
-
   console.log('video removed ', peer);
-
   var remotes = document.getElementById('remotes');
   var el = document.getElementById('container_' + webrtc.getDomId(peer));
   if (remotes && el) {
     remotes.removeChild(el);
   }
-
 });
 
 
+var roomFixedName = room.toLowerCase().replace(/\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
 
-// Since we use this twice we put it here
-function setRoom(name) {
-  $('form').remove();
-  $('h1').text(name);
-  $('#subTitle').text('Link to join: ' + location.href);
-  $('body').addClass('active');
-}
-
-
-
-if (room) {
-  setRoom(room);
-}
-else {
-
-  $('form').submit(function() {
-    var val = $('#sessionInput').val().toLowerCase().replace(/\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
-
-    webrtc.createRoom(val, function(err, name) {
-
-      console.log('create room cb', arguments);
-
-      var newUrl = location.pathname + '?' + val;
-
-      if (!err) {
-
-        history.replaceState({
-          foo: 'bar'
-        }, null, newUrl);
-
-        setRoom(name);
-
-      }
-      else {
-        console.log(err);
-      }
-    });
-    return false;
-  });
-
-}
+webrtc.createRoom(roomFixedName, function(err, name) {
+  console.log('Created room cb', arguments);
+});

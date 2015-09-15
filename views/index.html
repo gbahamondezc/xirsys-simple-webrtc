@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <title>
-      Intermediate SimpleWebRTC Demo
-    </title>
+    <style>
+      .videoContainer video {
+        width: 400px;
+      }
+    </style>
   </head>
   <body style="overflow:hidden;">
 
-    <p id="subTitle"></p>
+    <video id="localVideo" style="width:400px;" oncontextmenu="return false;"></video>
 
-    <form id="createRoom">
-      <input id="sessionInput" />
-      <button type="submit">Create Room!</button>
-    </form>
+    <div id="remotes"></div>
 
-    <video id="localVideo" oncontextmenu="return false;"></video>
-
-    <div id="remotes" style="width:20px;"></div>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <script src="/js/simplewebrtc.bundle.js"></script>
     <script src="/js/xirsys_connect.js"></script>
     <script src="/js/xirsys.core.js"></script>
     <script src="/js/xirsys.api.js"></script>
     <script src="/js/xirsys.simplewebrtc.js"></script>
     <script src="/js/main.js"></script>
-
+    
   </body>
-
 </html>
